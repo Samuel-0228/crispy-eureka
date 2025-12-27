@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 const int MAX_STUDENTS = 100;
@@ -26,9 +27,15 @@ public:
 
         cout << "Enter department: ";
         getline(cin, department);
+        cin.ignore();
 
         cout << "Age: ";
-        cin >> age;
+        while (!(cin >> age))
+        {                            // Loops until successful read
+            cin.clear();             // Reset error state
+            cin.ignore(10000, '\n'); // Flush bad input
+            cout << "Invalid Age! Enter an integer: ";
+        }
         cin.ignore();
 
         cout << "Phone number: ";
